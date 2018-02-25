@@ -24,6 +24,10 @@ This repo contains the source code of a Logs Analysis project.
 >  3. On which days did more than 1% of requests lead to errors?
 >  4. exit
 
+## Output
+
+ * [Click here](https://github.com/vvkvivekl/Logs-Analysis-Project/blob/master/Output.txt) to see output demo.
+
 ## Creators
 
 * Vivek Lingayat (Vvk)
