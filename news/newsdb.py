@@ -79,7 +79,7 @@ def questions():
     print "2) Most popular article authors of all time"
     print "3) On which days did more than 1%' of requests lead to errors?"
     print "9) To exit"
-    a = input("Ehich query you want to run: ")
+    a = input("Which query you want to run: ")
     clear()
     print "\n\n\nLoading..."
     display(a)
