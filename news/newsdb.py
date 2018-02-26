@@ -1,4 +1,4 @@
-# "Database code" for the DB Forum.
+#!/usr/bin/env python3
 
 import os
 import sys
