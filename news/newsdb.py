@@ -6,8 +6,21 @@ import psycopg2
 DBNAME = "news"
 
 
+def connect(database_name):
+    """Connect to the database.  Returns a database connection."""
+    try:
+        db = psycopg2.connect(dbname=database_name)
+        return db
+
+    except psycopg2.Error as e:
+        # THEN you could print an error
+        # and perhaps exit the program
+        print ("Unable to connect to database")
+        sys.exit(1)
+
+
 def popular_articles():
-    conn = psycopg2.connect(database=DBNAME)
+    conn = connect(DBNAME)
     cursor = conn.cursor()
     cursor.execute(
         "select articles.title, count(log.ip) as views from log "
@@ -25,7 +38,7 @@ def popular_articles():
 
 
 def popular_articles_author():
-    conn = psycopg2.connect(database=DBNAME)
+    conn = connect(DBNAME)
     cursor = conn.cursor()
     cursor.execute(
         "select authors.name, count(log.ip) as views from log, "
@@ -44,7 +57,7 @@ def popular_articles_author():
 
 
 def log_error():
-    conn = psycopg2.connect(database=DBNAME)
+    conn = connect(DBNAME)
     cursor = conn.cursor()
     cursor.execute(
         "select t_error.date, "
