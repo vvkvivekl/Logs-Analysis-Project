@@ -60,18 +60,13 @@ def log_error():
     conn = connect(DBNAME)
     cursor = conn.cursor()
     cursor.execute(
-        "select t_error.date, "
-        "round(((t_totals.tl - t_error.success)*"
-        "100.0/ t_totals.tl), 2) as percent "
-        "from log, (select (log.time::timestamp::date) as date, "
-        "count(log.status) as success from log where "
-        "status = '200 OK' group by date) as t_error join "
-        "(select (log.time::timestamp::date) as date2, "
-        "count(log.status) as tl "
-        "from log group by date2) as t_totals on "
-        "t_error.date = t_totals.date2 "
-        "where ((t_totals.tl - t_error.success)*100.0/t_totals.tl) > '1' "
-        "group by date, t_error.success,t_totals.tl;"
+        "select to_char(date, 'FMMonth FMDD, YYYY'), "
+		"err/total as ratio"
+    	"from (select time::date as date,"
+        "count(*) as total,"
+        "sum((status != '200 OK')::int)::float as err"
+        "from log group by date) as errors"
+		"where err/total > 0.01;"
         )
     results = cursor.fetchall()
     conn.close()
