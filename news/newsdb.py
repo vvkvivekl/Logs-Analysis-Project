@@ -61,12 +61,12 @@ def log_error():
     cursor = conn.cursor()
     cursor.execute(
         "select to_char(date, 'FMMonth FMDD, YYYY'), "
-		"err/total as ratio"
-    	"from (select time::date as date,"
+        "err/total as ratio"
+        "from (select time::date as date,"
         "count(*) as total,"
         "sum((status != '200 OK')::int)::float as err"
         "from log group by date) as errors"
-		"where err/total > 0.01;"
+        "where err/total > 0.01;"
         )
     results = cursor.fetchall()
     conn.close()
