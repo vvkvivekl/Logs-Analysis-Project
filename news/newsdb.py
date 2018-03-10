@@ -61,7 +61,7 @@ def log_error():
     cursor = conn.cursor()
     cursor.execute(
         """select to_char(date, 'FMMonth FMDD, YYYY'), 
-        err/total as ratio 
+        (err/total) * 100 as ratio 
         from (select time::date as date, 
         count(*) as total, 
         sum((status != '200 OK')::int)::float as err 
