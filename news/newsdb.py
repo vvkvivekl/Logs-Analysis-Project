@@ -23,9 +23,9 @@ def popular_articles():
     conn = connect(DBNAME)
     cursor = conn.cursor()
     cursor.execute(
-        "select articles.title, count(log.ip) as views from log "
-        "join articles on log.path = CONCAT('/article/',articles.slug) "
-        "group by articles.title order by views desc limit 3;"
+        """select articles.title, count(log.ip) as views from log 
+        join articles on log.path = CONCAT('/article/',articles.slug) 
+        group by articles.title order by views desc limit 3;"""
         )
     results = cursor.fetchall()
     conn.close()
@@ -41,10 +41,10 @@ def popular_articles_author():
     conn = connect(DBNAME)
     cursor = conn.cursor()
     cursor.execute(
-        "select authors.name, count(log.ip) as views from log, "
-        "authors, articles where articles.author = authors.id and "
-        "CONCAT('/article/',articles.slug) = log.path "
-        "group by authors.name order by views desc;"
+        """select authors.name, count(log.ip) as views from log, 
+        authors, articles where articles.author = authors.id and 
+        CONCAT('/article/',articles.slug) = log.path 
+        group by authors.name order by views desc;"""
         )
     results = cursor.fetchall()
     conn.close()
@@ -60,13 +60,13 @@ def log_error():
     conn = connect(DBNAME)
     cursor = conn.cursor()
     cursor.execute(
-        "select to_char(date, 'FMMonth FMDD, YYYY'), "
-        "err/total as ratio"
-        "from (select time::date as date,"
-        "count(*) as total,"
-        "sum((status != '200 OK')::int)::float as err"
-        "from log group by date) as errors"
-        "where err/total > 0.01;"
+        """select to_char(date, 'FMMonth FMDD, YYYY'), 
+        err/total as ratio 
+        from (select time::date as date, 
+        count(*) as total, 
+        sum((status != '200 OK')::int)::float as err 
+        from log group by date) as errors 
+        where err/total > 0.01;"""
         )
     results = cursor.fetchall()
     conn.close()
