@@ -11,10 +11,20 @@ This repo contains the source code of a Logs Analysis project.
 
 ## Instructions
 
-* ### Installation (SQL Db)
- >* [Click here](
-https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip) to download sql file.
- >* Import sql in PostgreSQL.
+* ### Set-up Instructions
+	1. Create the news database in PostgreSQL
+		* From the command line, launch the psql console by typing: psql
+		* Check to see if a _news database already_ exists by listing all databases with the command: ```\l```
+		* If a news database already exists, drop it with the command: ```DROP DATABASE news;```
+		* Create the _news_ database with the command: ```CREATE DATABASE news;```
+		* exit the console by typing: ```\q```
+	2. Download the schema and data for the _news_ database:
+		* [Click here to download](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
+	3. Unzip the downloaded file. ```unzip newsdata.zip```.
+		* You should now have an sql script called _newsdata.sql_.
+	4. From the command line, navigate to the directory containing _newsdata.sql_.
+	5. Import the schema and data in _newsdata.sql_ to the news database by typing: ```psql -d news -f newsdata.sql```
+
 
 * ### Installation (Run program)
  >* clone the project
