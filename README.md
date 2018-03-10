@@ -15,7 +15,7 @@ This repo contains the source code of a Logs Analysis project.
  >* clone the project
  >* open terminal in project Dir.
  >* go in news Dir. using ```cd news``` in terminal
- >* run ```python newsdb.py``` or ```python3 newsdb.py``` file
+ >* run ```python newsdb.py```
 
 * #### Usage
 > * type numeric values and hit enter
@@ -36,4 +36,4 @@ This repo contains the source code of a Logs Analysis project.
 
 Required software:
 
-* Python 3
+* Python
